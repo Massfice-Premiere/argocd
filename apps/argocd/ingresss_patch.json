@@ -31,7 +31,12 @@
     },
     {
         "op": "replace",
+        "path": "/spec/tls/0/secretName",
+        "value": "argocd-tls"
+    },
+    {
+        "op": "replace",
         "path": "/spec/tls/0/hosts/0",
         "value": "argocd.massfice-premiere.online"
-      }
+    }
 ]

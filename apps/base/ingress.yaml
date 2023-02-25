@@ -20,4 +20,4 @@ spec:
   tls:
     - hosts:
         - xyz
-      secretName: tls
+      secretName: xyz
