@@ -1,0 +1,17 @@
+[
+    {
+        "op": "replace",
+        "path": "/metadata/name",
+        "value": "argocd-application"
+    },
+    {
+        "op": "replace",
+        "path": "/spec/source/path",
+        "value": "apps/argocd"
+    },
+    {
+        "op": "replace",
+        "path": "/spec/destination/namespace",
+        "value": "argocd"
+    }
+]
