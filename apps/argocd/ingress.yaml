@@ -20,7 +20,7 @@
                   name: argocd-server
                   port:
                     name: https
-  tls:
-    - hosts:
-        - argocd.massfice-premiere.online
-      secretName: argocd-tls
+    tls:
+      - hosts:
+          - argocd.massfice-premiere.online
+        secretName: argocd-tls
