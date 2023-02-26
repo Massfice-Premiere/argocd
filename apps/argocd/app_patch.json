@@ -1,8 +1,13 @@
 [
     {
         "op": "add",
-        "path": "/spec/source/helm/values",
-        "value": "|\ninstallCRDs: true\ncreateCustomResource: true"
+        "path": "/spec/source/helm",
+        "value": {
+            "values": {
+                "installCRDs": true,
+                "createCustomResource": true
+            }
+        }
     },
     {
         "op": "replace",
