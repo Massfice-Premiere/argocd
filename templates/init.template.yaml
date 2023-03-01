@@ -1,46 +1,3 @@
-# 1
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: apps
-  namespace: argocd
-spec:
-  sourceRepos:
-    - ${REPO_URL}
-  destinations:
-    - namespace: 'argocd'
-      server: 'https://kubernetes.default.svc'
-  clusterResourceWhitelist:
-    - group: 'argoproj.io'
-      kind: 'ApplicationSet'
-    - group: 'argoproj.io'
-      kind: 'Application'
-    - group: 'argoproj.io'
-      kind: 'AppProject'
----
-# 2
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: default
-  namespace: argocd
-spec:
-  sourceRepos:
-    - ${REPO_URL}
-  destinations:
-    - namespace: '!argocd'
-      server: 'https://kubernetes.default.svc'
-    - namespace: '*'
-      server: 'https://kubernetes.default.svc'
-  clusterResourceBlacklist:
-    - group: 'argoproj.io'
-      kind: 'ApplicationSet'
-    - group: 'argoproj.io'
-      kind: 'Application'
-    - group: 'argoproj.io'
-      kind: 'AppProject'
----
-# 3
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -56,7 +13,6 @@ spec:
     server: https://kubernetes.default.svc
     namespace: argocd
 ---
-# 4
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
