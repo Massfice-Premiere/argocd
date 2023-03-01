@@ -16,9 +16,7 @@ spec:
       kind: 'Application'
     - group: 'argoproj.io'
       kind: 'AppProject'
-
 ---
-
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
@@ -39,9 +37,7 @@ spec:
       kind: 'Application'
     - group: 'argoproj.io'
       kind: 'AppProject'
-
 ---
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -56,9 +52,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-
 ---
-
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
