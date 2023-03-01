@@ -1,0 +1,92 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: apps
+  namespace: argocd
+spec:
+  sourceRepos:
+    - git@github.com:massficePremiere/argocd.git
+  destinations:
+    - namespace: 'argocd'
+      server: 'https://kubernetes.default.svc'
+  clusterResourceWhitelist:
+    - group: 'argoproj.io'
+      kind: 'ApplicationSet'
+    - group: 'argoproj.io'
+      kind: 'Application'
+    - group: 'argoproj.io'
+      kind: 'AppProject'
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+  namespace: argocd
+spec:
+  sourceRepos:
+    - git@github.com:massficePremiere/argocd.git
+  destinations:
+    - namespace: '!argocd'
+      server: 'https://kubernetes.default.svc'
+    - namespace: '*'
+      server: 'https://kubernetes.default.svc'
+  clusterResourceBlacklist:
+    - group: 'argoproj.io'
+      kind: 'ApplicationSet'
+    - group: 'argoproj.io'
+      kind: 'Application'
+    - group: 'argoproj.io'
+      kind: 'AppProject'
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: init
+  namespace: argocd
+spec:
+  project: apps
+  source:
+    repoURL: git@github.com:massficePremiere/argocd.git
+    targetRevision: HEAD
+    path: apps/init
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: standard-apps
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: git@github.com:massficePremiere/argocd.git
+      revision: HEAD
+      directories:
+      - path: apps/standard/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:massficePremiere/argocd.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          selfHeal: true
+          prune: true
+          allowEmpty: true
