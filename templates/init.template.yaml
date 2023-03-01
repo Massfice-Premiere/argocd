@@ -1,7 +1,68 @@
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: AppProject
 metadata:
   name: apps
+  namespace: argocd
+spec:
+  sourceRepos:
+    - ${REPO_URL}
+  destinations:
+    - namespace: 'argocd'
+      server: 'https://kubernetes.default.svc'
+  clusterResourceWhitelist:
+    - group: 'argoproj.io'
+      kind: 'ApplicationSet'
+    - group: 'argoproj.io'
+      kind: 'Application'
+    - group: 'argoproj.io'
+      kind: 'AppProject'
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+  namespace: argocd
+spec:
+  sourceRepos:
+    - ${REPO_URL}
+  destinations:
+    - namespace: '!argocd'
+      server: 'https://kubernetes.default.svc'
+    - namespace: '*'
+      server: 'https://kubernetes.default.svc'
+  clusterResourceBlacklist:
+    - group: 'argoproj.io'
+      kind: 'ApplicationSet'
+    - group: 'argoproj.io'
+      kind: 'Application'
+    - group: 'argoproj.io'
+      kind: 'AppProject'
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: init
+  namespace: argocd
+spec:
+  project: apps
+  source:
+    repoURL: ${REPO_URL}
+    targetRevision: HEAD
+    path: apps/init
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: standard-apps
   namespace: argocd
 spec:
   generators:
@@ -9,7 +70,7 @@ spec:
       repoURL: ${REPO_URL}
       revision: HEAD
       directories:
-      - path: apps/*
+      - path: apps/standard/*
   template:
     metadata:
       name: '{{path.basename}}'
@@ -29,4 +90,3 @@ spec:
           selfHeal: true
           prune: true
           allowEmpty: true
----
