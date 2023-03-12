@@ -6,7 +6,7 @@ metadata:
 spec:
   project: apps
   source:
-    repoURL: git@github.com:massficePremiere/argocd.git
+    repoURL: git@github.com:Massfice-Premiere/argocd.git
     targetRevision: HEAD
     path: apps/init
   destination:
@@ -28,7 +28,7 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: git@github.com:massficePremiere/argocd.git
+      repoURL: git@github.com:Massfice-Premiere/argocd.git
       revision: HEAD
       directories:
       - path: apps/standard/*
@@ -38,7 +38,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: git@github.com:massficePremiere/argocd.git
+        repoURL: git@github.com:Massfice-Premiere/argocd.git
         targetRevision: HEAD
         path: '{{path}}'
       destination:
