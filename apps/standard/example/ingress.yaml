@@ -13,7 +13,7 @@ spec:
           - path: /
             backend:
               service:
-                name: nginx
+                name: todo-example
                 port:
                   number: 80
             pathType: Prefix
