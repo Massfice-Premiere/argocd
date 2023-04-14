@@ -4,20 +4,20 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
     kubernetes.io/ingress.class: nginx
-  name: ingress
+  name: ${INGRESS_NAME}
 spec:
   rules:
-    - host: example.massfice-premiere.online
+    - host: ${INGRESS_SUB}.${INGRESS_DOMAIN}
       http:
         paths:
           - path: /
             backend:
               service:
-                name: nginx
+                name: ${INGRESS_SERVICE_NAME}
                 port:
-                  number: 80
+                  number: ${INGRESS_SERVICE_PORT}
             pathType: Prefix
   tls:
     - hosts:
-        - example.massfice-premiere.online
-      secretName: example-tls
+        - ${INGRESS_SUB}.${INGRESS_DOMAIN}
+      secretName: ${INGRESS_NAME}-tls
