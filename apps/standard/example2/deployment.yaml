@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: todo-example
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: todo-example
   replicas: 1
   template:
     metadata:
       labels:
-        app: nginx
+        app: todo-example
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.14.2
+        - name: todo-example
+          image: massfice/test-repo:206821cbac9ee6e88387b5133a8fb76d2c708bab
           ports:
-            - containerPort: 80
+            - containerPort: 3000
