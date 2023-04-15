@@ -7,7 +7,7 @@ metadata:
   name: ingress
 spec:
   rules:
-    - host: example-2.massfice-premiere.online
+    - host: example2.massfice-premiere.online
       http:
         paths:
           - path: /
@@ -19,5 +19,5 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - example-2.massfice-premiere.online
+        - example2.massfice-premiere.online
       secretName: ingress-tls
