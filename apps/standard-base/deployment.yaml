@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todo-example
+  annotations:
+    configmap.reloader.stakater.com/reload: "example-config-map"
+    secret.reloader.stakater.com/reload: "database-connection-secret"
 spec:
   selector:
     matchLabels:
