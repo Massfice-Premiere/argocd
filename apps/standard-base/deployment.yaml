@@ -17,3 +17,8 @@ spec:
           image: massfice/test-repo:b21fc7a0a775f1dbd3201f23db87ebfa3221c61b
           ports:
             - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: example-config-map
+            - secretRef:
+                name: database-connection-secret
