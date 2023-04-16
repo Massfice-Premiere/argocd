@@ -6,3 +6,8 @@ resources:
   - ingress.yaml
   - database-connection-secret.yaml
   - pull-secret.yaml
+
+configMapGenerator:
+  - name: example-config-map
+    literals:
+      - MONGO_DBNAME=todos-nonproduction-example2
