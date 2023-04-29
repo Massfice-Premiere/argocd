@@ -1,0 +1,12 @@
+{
+    "name": "example2",
+    "dir": "example2",
+    "namespace": "example2",
+    "containers": [
+        {
+            "id": "todo",
+            "image": "massfice/test-repo",
+            "strategy": "latest"
+        }
+    ]
+}
