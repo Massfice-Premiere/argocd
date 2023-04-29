@@ -4,6 +4,7 @@ metadata:
   name: standard-apps
   namespace: argocd
 spec:
+  goTemplate: true
   generators:
   - git:
       repoURL: git@github.com:Massfice-Premiere/argocd.git
