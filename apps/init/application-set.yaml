@@ -27,7 +27,7 @@ spec:
       source:
         repoURL: git@github.com:Massfice-Premiere/argocd.git
         targetRevision: HEAD
-        path: '{{ path }}/{{ .dir }}'
+        path: '{{ .path.path }}/{{ .dir }}'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{ .namespace }}'
