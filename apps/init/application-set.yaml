@@ -32,7 +32,6 @@ spec:
           values: |
             app_name: {{ .app_name }}
             app_namespace: {{ .app_namespace }}
-            app_project: {{ .app_project }}
             app_repo: git@github.com:Massfice-Premiere/argocd.git
             app_path: apps/{{ .app_dir }}
       destination:

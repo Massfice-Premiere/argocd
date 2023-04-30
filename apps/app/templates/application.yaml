@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.app_name }}
   namespace: argocd
 spec:
-  project: {{ .Values.app_project }}
+  project: default
   source:
     repoURL: {{ .Values.app_repo }}
     targetRevision: HEAD
