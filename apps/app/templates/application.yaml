@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.app_name }}
-  namespace: {{ .Values.app_namespace }}
+  namespace: argocd
 spec:
   project: {{ .Values.app_project }}
   source:
