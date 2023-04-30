@@ -37,6 +37,12 @@ spec:
             app_labels:
               - key: argocd-image-updater.argoproj.io/write-back-method
                 value: git
+              - key: argocd-image-updater.argoproj.io/write-back-target
+                value: kustomization
+              - key: argocd-image-updater.argoproj.io/git-branch
+                value: main
+              - key: argocd-image-updater.argoproj.io/image-list
+                value: {{ range $index, $element := .app_containers }}{{ if $index }},{{ end }}{{ $element.id }}={{ $element.image }}{{end}}
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
