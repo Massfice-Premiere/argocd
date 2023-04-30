@@ -2,6 +2,7 @@
     "app_name": "example",
     "app_namespace": "example",
     "app_dir": "example",
+    "app_project": "default",
     "app_containers": [
         {
             "id": "todo",

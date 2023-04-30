@@ -10,7 +10,7 @@ spec:
       repoURL: git@github.com:Massfice-Premiere/argocd.git
       revision: HEAD
       files:
-      - path: apps/configs/**.json
+      - path: apps/_configs/**.json
   template:
     metadata:
       name: '{{ .app_name }}'
@@ -23,11 +23,11 @@ spec:
         # argocd-image-updater.argoproj.io/{{ .id }}.update-strategy: {{ .strategy }}
         # {{- end }}
     spec:
-      project: default
+      project: {{ .app_project }}
       source:
         repoURL: git@github.com:Massfice-Premiere/argocd.git
         targetRevision: HEAD
-        path: 'apps/manifests/{{ .app_dir }}'
+        path: 'apps/{{ .app_dir }}'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{ .app_namespace }}'
