@@ -9,3 +9,6 @@ configMapGenerator:
 - name: example-config-map
   literals:
   - MONGO_DBNAME=todos-nonproduction-example2
+images:
+- name: massfice/todo-example
+  newTag: 90592dcbf947e6dcf107014b23514e1b22f3aaab
