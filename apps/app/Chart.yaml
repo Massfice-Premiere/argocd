@@ -1,0 +1,4 @@
+name: app
+description: application
+version: 0.1.0
+kubeVersion: ">=1.10.0"

@@ -13,24 +13,31 @@ spec:
       - path: apps/_configs/**.json
   template:
     metadata:
-      name: '{{ .app_name }}'
-      labels:
-        argocd-image-updater.argoproj.io/write-back-method: git
-        argocd-image-updater.argoproj.io/write-back-target: kustomization
-        argocd-image-updater.argoproj.io/git-branch: main
+      name: '{{ .app_name }}-init'
+      # labels:
+      #   argocd-image-updater.argoproj.io/write-back-method: git
+      #   argocd-image-updater.argoproj.io/write-back-target: kustomization
+      #   argocd-image-updater.argoproj.io/git-branch: main
         # '{{- range .app_containers }}'
         # argocd-image-updater.argoproj.io/image-list: '{{ .id }}={{ .image }}'
         # argocd-image-updater.argoproj.io/{{ .id }}.update-strategy: '{{ .strategy }}'
-        # '{{- end }}'
+        # '{{- end }}'  
     spec:
-      project: '{{ .app_project }}'
+      project: apps
       source:
         repoURL: git@github.com:Massfice-Premiere/argocd.git
         targetRevision: HEAD
-        path: 'apps/{{ .app_dir }}'
+        path: apps/app
+        helm:
+          values: |
+            app_name: {{ .app_name }}
+            app_namespace: {{ .app_namespace }}
+            app_project: {{ .app_project }}
+            app_repo: git@github.com:Massfice-Premiere/argocd.git
+            app_path: apps/{{ .app_dir }}
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{ .app_namespace }}'
+        namespace: argocd
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
