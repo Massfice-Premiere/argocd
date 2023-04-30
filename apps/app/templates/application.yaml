@@ -3,6 +3,10 @@ kind: Application
 metadata:
   name: {{ .Values.app_name }}
   namespace: argocd
+  labels:
+    {{- range $label := .Values.app_labels }}
+    {{ $label.key }}: {{ $label.value }}
+    {{- end }}
 spec:
   project: default
   source:
