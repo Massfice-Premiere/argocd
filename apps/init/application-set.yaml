@@ -18,10 +18,10 @@ spec:
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: main
-        '{{- range .app_containers }}'
-        argocd-image-updater.argoproj.io/image-list: '{{ .id }}={{ .image }}'
-        argocd-image-updater.argoproj.io/{{ .id }}.update-strategy: '{{ .strategy }}'
-        '{{- end }}'
+        # '{{- range .app_containers }}'
+        # argocd-image-updater.argoproj.io/image-list: '{{ .id }}={{ .image }}'
+        # argocd-image-updater.argoproj.io/{{ .id }}.update-strategy: '{{ .strategy }}'
+        # '{{- end }}'
     spec:
       project: '{{ .app_project }}'
       source:
