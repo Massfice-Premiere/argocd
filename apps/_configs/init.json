@@ -1,7 +1,0 @@
-{
-    "app_name": "init",
-    "app_namespace": "argocd",
-    "app_dir": "init",
-    "app_project": "apps",
-    "app_containers": []
-}
