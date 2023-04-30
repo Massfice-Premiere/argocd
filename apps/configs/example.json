@@ -1,5 +1,12 @@
 {
     "app_name": "example",
     "app_namespace": "example",
-    "app_dir": "example"
+    "app_dir": "example",
+    "app_containers": [
+        {
+            "id": "todo",
+            "image": "massfice/test-repo",
+            "strategy": "latest"
+        }
+    ]
 }
