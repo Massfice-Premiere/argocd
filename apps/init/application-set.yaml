@@ -34,7 +34,7 @@ spec:
             app_namespace: {{ .app_namespace }}
             app_repo: git@github.com:Massfice-Premiere/argocd.git
             app_path: apps/{{ .app_dir }}
-            app_labels:
+            app_annotations:
               - key: argocd-image-updater.argoproj.io/write-back-method
                 value: git
               - key: argocd-image-updater.argoproj.io/write-back-target

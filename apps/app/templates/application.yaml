@@ -3,8 +3,8 @@ kind: Application
 metadata:
   name: {{ .Values.app_name }}
   namespace: argocd
-  labels:
-    {{- range $label := .Values.app_labels }}
+  annotations:
+    {{- range $label := .Values.app_annotations }}
     {{ $label.key }}: {{ $label.value }}
     {{- end }}
 spec:
