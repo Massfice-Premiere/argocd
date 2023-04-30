@@ -11,4 +11,4 @@ configMapGenerator:
   - MONGO_DBNAME=todos-production-example
 images:
 - name: massfice/todo-example
-  newTag: 90592dcbf947e6dcf107014b23514e1b22f3aaab
+  newTag: 33d45fb3bc1245138fffae9e56e78ec0c8a72372
