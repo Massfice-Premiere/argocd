@@ -23,7 +23,7 @@ spec:
         # argocd-image-updater.argoproj.io/{{ .id }}.update-strategy: {{ .strategy }}
         # {{- end }}
     spec:
-      project: {{ .app_project }}
+      project: '{{ .app_project }}'
       source:
         repoURL: git@github.com:Massfice-Premiere/argocd.git
         targetRevision: HEAD
