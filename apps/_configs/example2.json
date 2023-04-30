@@ -5,7 +5,7 @@
     "app_containers": [
         {
             "id": "todo",
-            "image": "massfice/test-repo",
+            "image": "massfice/todo-example",
             "strategy": "latest"
         }
     ]

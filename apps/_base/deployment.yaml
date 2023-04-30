@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: todo-example
-          image: massfice/test-repo:latest
+          image: massfice/todo-example:latest
           ports:
             - name: http
               containerPort: 3000
