@@ -9,11 +9,11 @@ spec:
   - git:
       repoURL: git@github.com:Massfice-Premiere/argocd.git
       revision: HEAD
-      directories:
-      - path: apps/standard/*
+      files:
+      - path: apps/configs/**.json
   template:
     metadata:
-      name: '{{ .path.basename }}'
+      name: '{{ .app_name }}'
       # labels:
       #   argocd-image-updater.argoproj.io/write-back-method: git
       #   argocd-image-updater.argoproj.io/write-back-target: kustomization
@@ -27,10 +27,10 @@ spec:
       source:
         repoURL: git@github.com:Massfice-Premiere/argocd.git
         targetRevision: HEAD
-        path: '{{ .path.path }}'
+        path: 'apps/standard/{{ .app_dir }}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{ .path.basename }}'
+        namespace: '{{ .app_namespace }}'
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
